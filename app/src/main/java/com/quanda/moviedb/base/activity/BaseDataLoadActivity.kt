@@ -15,6 +15,7 @@ abstract class BaseDataLoadActivity<View : ViewDataBinding, ViewModel : BaseData
     override fun initData() {
         loadingDialog = DialogUtils.createLoadingDialog(this, false)
         viewModel = initViewModel()
+        lifecycle.addObserver(viewModel)
         viewModel.isDataLoading.observe(this,
                 Observer<Boolean> { t -> handleLoadingChanged(t == true) })
     }

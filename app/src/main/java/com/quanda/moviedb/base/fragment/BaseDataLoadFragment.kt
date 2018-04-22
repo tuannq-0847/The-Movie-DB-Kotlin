@@ -17,6 +17,7 @@ abstract class BaseDataLoadFragment<View : ViewDataBinding, ViewModel : BaseData
             loadingDialog = DialogUtils.createLoadingDialog(context, false)
         }
         viewModel = initViewModel()
+        lifecycle.addObserver(viewModel)
         viewModel.isDataLoading.observe(this,
                 Observer<Boolean> { t -> handleLoadingChanged(t == true) })
     }
